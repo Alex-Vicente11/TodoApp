@@ -1,12 +1,13 @@
 package com.juandgaines.todoapp.ui.theme
-
 import androidx.compose.material3.Typography
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.text.googlefonts.Font
 import com.juandgaines.todoapp.R
-//TODO: 3.1 Mirgrar archivos de tema y arreglar imports
 
 val provider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
@@ -16,14 +17,14 @@ val provider = GoogleFont.Provider(
 
 val bodyFontFamily = FontFamily(
     Font(
-        googleFont = GoogleFont("Poppins"),
+        googleFont = GoogleFont("Archivo Black"),
         fontProvider = provider,
     )
 )
 
 val displayFontFamily = FontFamily(
     Font(
-        googleFont = GoogleFont("Poppins"),
+        googleFont = GoogleFont("Adamina"),
         fontProvider = provider,
     )
 )

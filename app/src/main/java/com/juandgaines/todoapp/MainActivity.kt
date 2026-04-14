@@ -26,11 +26,14 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             TodoAppTheme() {
+                HelloWorldView()
+                /*
                 var isShown by remember { mutableStateOf(false) }
 
                 Column (
                     modifier = Modifier.padding(56.dp)
                 ) {
+
                     if (isShown) {
                         Text("This is a message")
                     }
@@ -39,8 +42,10 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.clickable {
                             isShown = !isShown
                         }
-                    )
+                    /
                 }
+                */
+
             }
         }
     }

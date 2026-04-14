@@ -1,5 +1,6 @@
 package com.juandgaines.todoapp.ui.components
 
+import android.R.attr.icon
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -189,4 +191,36 @@ private class TextProvider:PreviewParameterProvider<String>{
             "Hello, Parameter Provider!",
             "This is a very long text that might not fit in one line."
         ).asSequence()
+}
+
+@Composable
+fun IconExample(
+    modifier: Modifier,
+    iconContainer: IconContainer
+) {
+    Icon(
+        imageVector = iconContainer.icon,
+        contentDescription = "Favorite Icon",
+        modifier = modifier
+            .size(48.dp)
+            .border(
+                width = 2.dp,
+                Color.Gray,
+                shape = CircleShape
+            )
+            .padding(8.dp)
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun IconExamplePreview(
+    @PreviewParameter(IconProvider::class) icon: IconContainer
+){
+    TodoAppTheme {
+        IconExample(
+            modifier = Modifier,
+            iconContainer = icon
+        )
+    }
 }
