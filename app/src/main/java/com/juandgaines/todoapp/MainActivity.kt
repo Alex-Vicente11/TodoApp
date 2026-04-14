@@ -11,13 +11,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.juandgaines.todoapp.data.FakeTaskLocalDataSource
+import com.juandgaines.todoapp.domain.Task
 import com.juandgaines.todoapp.ui.theme.TodoAppTheme
+import java.util.UUID
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,19 +30,34 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             TodoAppTheme() {
-                var isShown by remember { mutableStateOf(false) }
+                val fakeLocalDataSource = FakeTaskLocalDataSource
+                var text by remember {
+                    mutableStateOf("")
+                }
 
-                Column (
-                    modifier = Modifier.padding(56.dp)
-                ) {
-                    if (isShown) {
-                        Text("This is a message")
+                LaunchedEffect(true) {
+                    fakeLocalDataSource.taskFlow.collect {
+                        text = it.toString()
                     }
+                }
+
+                LaunchedEffect(true) {
+                    fakeLocalDataSource.addTask(
+                        Task(
+                            id = UUID.randomUUID().toString(),
+                            title = "Task 1",
+                            description = "Description 1"
+                        )
+                    )
+                }
+
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
                     Text(
-                        "Hello, world!",
-                        modifier = Modifier.clickable {
-                            isShown = !isShown
-                        }
+                        text = text,
+                        modifier = Modifier
+                            .padding(top = innerPadding.calculateTopPadding())
+                            .fillMaxSize()
                     )
                 }
             }
