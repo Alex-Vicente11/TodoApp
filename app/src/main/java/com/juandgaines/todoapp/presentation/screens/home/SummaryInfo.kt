@@ -16,7 +16,7 @@ import com.juandgaines.todoapp.ui.theme.TodoAppTheme
 
 @Composable
 fun SummaryInfo(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     date: String = "March 9, 2024",
     tasksSummary: String = "5 incomplete, 5 completed"
 ) {

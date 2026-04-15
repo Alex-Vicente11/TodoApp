@@ -22,7 +22,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import com.juandgaines.todoapp.domain.Category.WORK
 import com.juandgaines.todoapp.domain.Task
 import com.juandgaines.todoapp.presentation.screens.home.providers.TaskItemPreviewProvider
 import com.juandgaines.todoapp.ui.theme.TodoAppTheme
@@ -30,10 +29,10 @@ import com.juandgaines.todoapp.ui.theme.TodoAppTheme
 @Composable
 fun TaskItem(
     modifier: Modifier = Modifier,
-    onClickItem:(String) -> Unit,
-    onDeleteItem:(String) -> Unit,
-    onToggleCompletion:(Task) -> Unit,
-    task:Task,
+    onClickItem: (String) -> Unit,
+    onDeleteItem: (String) -> Unit,
+    onToggleCompletion: (Task) -> Unit,
+    task: Task,
 ) {
     Row (
         modifier = modifier
