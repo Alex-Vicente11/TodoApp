@@ -2,6 +2,7 @@
 
 package com.juandgaines.todoapp.presentation.screens.home
 
+import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -110,7 +111,10 @@ fun HomeScreen(
                 item {
                     SummaryInfo(
                         date = state.date,
-                        tasksSummary = state.summary
+                        tasksSummary = state.summary,
+                        modifier = Modifier.padding(vertical = 16.dp),
+                        completedTask = state.completedTask.size,
+                        totalTask = state.pendingTask.size + state.completedTask.size
                     )
                 }
 
@@ -198,7 +202,7 @@ fun HomeScreenPreviewLight(
 
 @Preview(
     showBackground = true,
-    uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES
+    uiMode = Configuration.UI_MODE_NIGHT_YES
 )
 @Composable
 fun HomeScreenPreviewDark(
