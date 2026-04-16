@@ -51,7 +51,7 @@ import com.juandgaines.todoapp.presentation.screens.detail.providers.TaskScreenS
 import com.juandgaines.todoapp.ui.theme.TodoAppTheme
 
 @Composable
-fun TaskScreenRoot(){
+fun TaskScreenRoot(navigateBack: () -> Boolean) {
     val viewModel = viewModel<TaskViewModel>()
     val state = viewModel.state
     val event = viewModel.event
@@ -67,13 +67,23 @@ fun TaskScreenRoot(){
                             context.getString(R.string.task_created),
                             Toast.LENGTH_SHORT
                         ).show()
+                    navigateBack()
                 }
             }
         }
     }
     TaskScreen(
         state = state,
-        onAction = viewModel::onAction
+        onAction = { action ->
+            when(action) {
+                is ActionTask.Back -> {
+                    navigateBack()
+                }
+                else -> {
+                    viewModel.onAction(action)
+                }
+            }
+        }
     )
 }
 

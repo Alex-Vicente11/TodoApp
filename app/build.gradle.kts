@@ -16,12 +16,12 @@ room {
 
 android {
     namespace = "com.juandgaines.todoapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.juandgaines.todoapp"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -72,9 +72,12 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
 
     //TODO: 3.5 Agregar libreria fuentes google
     implementation(libs.androidx.ui.text.google.fonts)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.navigation.compose)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 

@@ -4,9 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.juandgaines.todoapp.presentation.screens.detail.TaskScreen
-import com.juandgaines.todoapp.presentation.screens.detail.TaskScreenRoot
-import com.juandgaines.todoapp.presentation.screens.home.HomeScreenRoot
+import androidx.navigation.compose.rememberNavController
+import com.juandgaines.todoapp.navigation.NavigationRoot
 import com.juandgaines.todoapp.ui.theme.TodoAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,7 +14,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TodoAppTheme() {
-                TaskScreenRoot()
+                val navController = rememberNavController()
+                NavigationRoot(navController = navController,)
             }
         }
     }
