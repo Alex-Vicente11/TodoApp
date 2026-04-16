@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.juandgaines.todoapp.presentation.screens.detail.TaskScreen
+import com.juandgaines.todoapp.presentation.screens.detail.TaskScreenState
 import com.juandgaines.todoapp.presentation.screens.home.HomeScreenRoot
 import com.juandgaines.todoapp.ui.theme.TodoAppTheme
 
@@ -13,7 +15,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TodoAppTheme() {
-                HomeScreenRoot()
+                TaskScreen(
+                    state = TaskScreenState()
+                )
             }
         }
     }
