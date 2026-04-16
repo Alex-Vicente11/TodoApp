@@ -15,6 +15,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class HomeScreenViewModel:ViewModel() {
 
@@ -27,13 +29,19 @@ class HomeScreenViewModel:ViewModel() {
     val events = eventChannel.receiveAsFlow()
 
     init {
+
+        state = state.copy(
+            date = LocalDate.now().let {
+                DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy").format(it)
+            }
+        )
+
         taskLocalDataSource.tasksFlow.onEach {
             val completedTasks = it.filter { task -> task.isCompleted }
             val pendingTasks = it.filter { task -> !task.isCompleted }
 
-            state = HomeDataState(
-                date = "Today",
-                summary = "You have ${pendingTasks.size} pending tasks",
+            state = state.copy(
+                summary = pendingTasks.size.toString(),
                 completedTask = completedTasks,
                 pendingTask = pendingTasks,
             )
