@@ -41,11 +41,6 @@ object FakeTaskLocalDataSource: TaskLocalDataSource {
         _tasksFlow.value = tasks
     }
 
-    override suspend fun deleteAllTasks() {
-        delay(1000L)
-        _tasksFlow.value = emptyList()
-    }
-
     override suspend fun getTaskById(taskId: String): Task? {
         delay(1000L)
         return _tasksFlow.value.find { it.id == taskId }

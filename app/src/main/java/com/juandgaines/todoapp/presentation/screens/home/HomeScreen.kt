@@ -50,9 +50,9 @@ import com.juandgaines.todoapp.ui.theme.TodoAppTheme
 
 @Composable
 fun HomeScreenRoot(
-    navigateToTaskScreen: (String?) -> Unit
+    navigateToTaskScreen: (String?) -> Unit,
+    viewModel: HomeScreenViewModel,
 ) {
-    val viewModel:HomeScreenViewModel = viewModel<HomeScreenViewModel>()
     val state = viewModel.state
     val event = viewModel.events
     val context = LocalContext.current
