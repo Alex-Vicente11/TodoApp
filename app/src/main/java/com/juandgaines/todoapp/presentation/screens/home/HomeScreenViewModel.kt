@@ -36,7 +36,7 @@ class HomeScreenViewModel @Inject constructor(
 
         state = state.copy(
             date = LocalDate.now().let {
-                DateTimeFormatter.ofPattern("EEEE, MMMM dd yyyy").format(it)
+                DateTimeFormatter.ofPattern("EEE, MMMM dd yyyy").format(it)
             }
         )
 
@@ -81,7 +81,7 @@ class HomeScreenViewModel @Inject constructor(
 
                 OnDeleteAllTasks -> {
                     taskLocalDataSource.removeAllTasks()
-                    eventChannel.send(HomeScreenEvent.UpdatedTask)
+                    eventChannel.send(HomeScreenEvent.AllTaskDeleted)
                 }
 
                 else-> Unit
