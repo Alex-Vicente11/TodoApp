@@ -16,6 +16,7 @@ import com.juandgaines.todoapp.domain.TaskLocalDataSource
 import com.juandgaines.todoapp.presentation.screens.home.HomeScreenAction.OnDeleteAllTasks
 import com.juandgaines.todoapp.presentation.screens.home.HomeScreenAction.OnDeleteTask
 import com.juandgaines.todoapp.presentation.screens.home.HomeScreenAction.OnToggleTask
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -23,8 +24,10 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import javax.inject.Inject
 
-class HomeScreenViewModel(
+@HiltViewModel
+class HomeScreenViewModel@Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val taskLocalDataSource: TaskLocalDataSource
 ):ViewModel() {
@@ -88,19 +91,6 @@ class HomeScreenViewModel(
                 }
 
                 else-> Unit
-            }
-        }
-    }
-
-    companion object{
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val savedStateHandle = createSavedStateHandle()
-                val dataSource = (this[APPLICATION_KEY] as TodoApplication).dataSource
-                HomeScreenViewModel(
-                    taskLocalDataSource = dataSource,
-                    savedStateHandle = savedStateHandle
-                )
             }
         }
     }
