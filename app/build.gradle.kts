@@ -25,7 +25,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.juandgaines.todoapp.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -53,6 +53,16 @@ android {
     buildFeatures {
         compose = true
     }
+
+    sourceSets {
+        getByName("androidTest") {
+            java.srcDirs("src/androidTest/java", "src/sharedTest/java")
+        }
+        getByName("test") {
+            java.srcDirs("src/test/java", "src/sharedTest/java")
+        }
+    }
+
     //TODO: 2.4 Remover configuracion gradle compilador compose
     packaging {
         resources {
@@ -92,5 +102,30 @@ dependencies {
     //Libreria Serializacion
 
     implementation(libs.kotlinx.serialization.json)
+
+    //Testing
+    testImplementation(libs.junit4)
+    testImplementation(libs.mockk)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
+    testImplementation(libs.truth)
+
+    //Android Testing
+    androidTestImplementation(libs.junit4)
+    androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.mockwebserver)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.turbine)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(libs.androidx.navigation.testing)
+
+    // Hilt Testing
+    androidTestImplementation(libs.dagger.hilt.android.testing)
+    kspAndroidTest(libs.dagger.hilt.compiler)
 
 }
